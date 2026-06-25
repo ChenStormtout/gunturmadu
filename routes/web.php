@@ -17,7 +17,8 @@ use App\Http\Controllers\Admin\ProfilController;
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/berita', [HomeController::class, 'berita'])->name('berita.index');
-Route::get('/berita/{slug}', [HomeController::class, 'detailBerita'])->name('berita.detail'); // Untuk baca full artikel
+// Ubah dari /berita/{slug} menjadi /baca/{slug}
+Route::get('/baca/{slug}', [HomeController::class, 'detailBerita'])->name('berita.detail'); // Untuk baca full artikel
 Route::get('/profil', [HomeController::class, 'profil'])->name('profil');
 Route::get('/galeri', [HomeController::class, 'galeri'])->name('galeri.index');
 
