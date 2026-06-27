@@ -2,7 +2,6 @@
 
 @section('content')
 
-<!-- 1. HERO SECTION & CUACA -->
 <section class="relative min-h-[90vh] flex items-center pt-28 pb-32 overflow-hidden">
     <div class="absolute inset-0 z-0">
         <img
@@ -16,9 +15,7 @@
 
     <div class="relative z-10 max-w-7xl mx-auto px-6 text-center animate-[fadeInUp_1s_ease-out]">
 
-        <!-- Satu bar info elegan: status portal + cuaca, menyatu, bukan dua pil yang berebut perhatian -->
         <div class="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-5 px-5 sm:px-7 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/15 text-white shadow-lg shadow-black/10 mb-8">
-
             <div class="flex items-center gap-2.5">
                 <span class="relative flex h-2 w-2">
                     <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
@@ -54,7 +51,7 @@
             Ruang digital komunitas untuk merayakan keindahan alam, berbagi cerita keseharian warga, dan mengenalkan potensi lokal ke dunia luar.
         </p>
         <div class="flex flex-wrap justify-center gap-4 mt-10">
-            <a href="/berita" class="px-8 py-4 rounded-2xl bg-emerald-500 text-white font-semibold shadow-xl shadow-emerald-500/30 hover:scale-105 transition duration-300">
+            <a href="{{ route('berita.index') }}" class="px-8 py-4 rounded-2xl bg-emerald-500 text-white font-semibold shadow-xl shadow-emerald-500/30 hover:scale-105 transition duration-300">
                 Baca Cerita Desa
             </a>
             <a href="#statistik" class="px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition duration-300">
@@ -63,7 +60,6 @@
         </div>
     </div>
 
-    <!-- Indikator scroll -->
     <a href="#statistik" aria-label="Gulir ke bawah" class="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/60 hover:text-white/90 transition">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
@@ -71,7 +67,6 @@
     </a>
 </section>
 
-<!-- 2. STATISTIK & GRAFIK SECTION -->
 <section id="statistik" class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out relative z-20 max-w-6xl mx-auto px-6 -mt-16 mb-24">
     <div class="bg-white/90 backdrop-blur-xl rounded-[36px] border border-white shadow-[0_20px_80px_rgba(15,23,42,0.08)] p-8 md:p-12">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -102,7 +97,6 @@
     </div>
 </section>
 
-<!-- 3. TENTANG KAMI SECTION -->
 <section id="tentang" class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
     <div class="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-[40px] overflow-hidden shadow-2xl">
         <div class="grid lg:grid-cols-2 gap-12 p-10 md:p-16 items-center">
@@ -126,7 +120,6 @@
     </div>
 </section>
 
-<!-- 4. PENGGERAK DESA (APARATUR) SECTION -->
 <section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
     <div class="text-center mb-12">
         <span class="text-emerald-600 font-semibold uppercase tracking-widest text-sm">Wajah Desa</span>
@@ -151,7 +144,6 @@
     </div>
 </section>
 
-<!-- 5. GALERI SECTION (MASONRY GRID) -->
 <section id="galeri" class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
     
     <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
@@ -159,7 +151,7 @@
             <span class="text-emerald-600 font-semibold uppercase tracking-widest text-sm">Jejak Visual</span>
             <h2 class="text-4xl font-black text-slate-900 mt-2">Album Kenangan</h2>
         </div>
-        <a href="/galeri" class="px-6 py-3 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg transition">
+        <a href="{{ route('galeri.index') }}" class="px-6 py-3 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg transition">
             Lihat Semua Foto →
         </a>
     </div>
@@ -183,7 +175,6 @@
     </div>
 </section>
 
-<!-- Lightbox galeri -->
 <div id="lightbox" class="hidden fixed inset-0 z-[60] bg-slate-950/90 backdrop-blur-sm items-center justify-center p-6">
     <button id="lightbox-close" aria-label="Tutup" class="absolute top-6 right-6 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -194,14 +185,13 @@
     </figure>
 </div>
 
-<!-- 6. CERITA TERBARU SECTION -->
 <section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
     <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
         <div>
             <span class="text-emerald-600 font-semibold uppercase tracking-widest text-sm">Cerita Terbaru</span>
             <h2 class="text-4xl font-black text-slate-900 mt-2">Kabar & Jurnal Desa</h2>
         </div>
-        <a href="/berita" class="px-6 py-3 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg transition">
+        <a href="{{ route('berita.index') }}" class="px-6 py-3 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg transition">
             Lihat Semua Jurnal →
         </a>
     </div>
@@ -227,7 +217,7 @@
                 <h3 class="mt-4 text-2xl font-bold text-slate-900 group-hover:text-emerald-600 transition">{{ $berita->judul }}</h3>
                 <p class="mt-4 text-slate-500 line-clamp-3 leading-relaxed">{{ $berita->konten }}</p>
                 <div class="mt-auto pt-6">
-                    <a href="/berita/{{ $berita->slug }}" class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-teal-700 transition">Mulai Membaca →</a>
+                    <a href="{{ route('berita.detail', $berita->slug) }}" class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-teal-700 transition">Mulai Membaca →</a>
                 </div>
             </div>
         </article>
@@ -239,7 +229,6 @@
     </div>
 </section>
 
-<!-- 7. PETA WILAYAH SECTION -->
 <section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
     <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
         <div>
@@ -270,7 +259,6 @@
     </div>
 </section>
 
-<!-- CALL TO ACTION -->
 <section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-12">
     <div class="rounded-[40px] bg-slate-900 overflow-hidden relative">
         <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20"></div>
@@ -332,10 +320,7 @@
 
         document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
 
-        // --- 3. Widget cuaca (Open-Meteo), ikon SVG bukan emoji biar konsisten dengan desain ---
-        // Koordinat sebaiknya diisi dari $profil['latitude'] / $profil['longitude'] di controller.
-// --- 3. Widget cuaca (Open-Meteo) ---
-        // PENGAMANAN BARU: Kalau di admin dikosongin, otomatis pakai koordinat default
+        // --- 3. Widget cuaca (Open-Meteo) ---
         const lat = "{{ $profil['latitude'] ?? '' }}" || "-4.9489";
         const lon = "{{ $profil['longitude'] ?? '' }}" || "105.3271";
 
