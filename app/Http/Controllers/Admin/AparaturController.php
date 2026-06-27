@@ -28,7 +28,7 @@ class AparaturController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // Boleh sampai 5MB karena bakal dikompres
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:9120', // Boleh sampai 5MB karena bakal dikompres
         ]);
 
         $aparatur = new Aparatur();
