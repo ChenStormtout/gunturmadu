@@ -2,6 +2,7 @@
 
 @section('content')
 
+<!-- 1. HERO SECTION & CUACA -->
 <section class="relative min-h-[90vh] flex items-center pt-28 pb-32 overflow-hidden">
     <div class="absolute inset-0 z-0">
         <img
@@ -60,6 +61,7 @@
         </div>
     </div>
 
+    <!-- Indikator scroll -->
     <a href="#statistik" aria-label="Gulir ke bawah" class="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/60 hover:text-white/90 transition">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
@@ -67,6 +69,7 @@
     </a>
 </section>
 
+<!-- 2. STATISTIK & GRAFIK SECTION -->
 <section id="statistik" class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out relative z-20 max-w-6xl mx-auto px-6 -mt-16 mb-24">
     <div class="bg-white/90 backdrop-blur-xl rounded-[36px] border border-white shadow-[0_20px_80px_rgba(15,23,42,0.08)] p-8 md:p-12">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -97,6 +100,7 @@
     </div>
 </section>
 
+<!-- 3. TENTANG KAMI SECTION -->
 <section id="tentang" class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
     <div class="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-[40px] overflow-hidden shadow-2xl">
         <div class="grid lg:grid-cols-2 gap-12 p-10 md:p-16 items-center">
@@ -120,6 +124,7 @@
     </div>
 </section>
 
+<!-- 4. PENGGERAK DESA (APARATUR) SECTION -->
 <section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
     <div class="text-center mb-12">
         <span class="text-emerald-600 font-semibold uppercase tracking-widest text-sm">Wajah Desa</span>
@@ -144,6 +149,7 @@
     </div>
 </section>
 
+<!-- 5. GALERI SECTION (MASONRY GRID) -->
 <section id="galeri" class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
     
     <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
@@ -158,11 +164,16 @@
 
     <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
         @forelse($galeris ?? [] as $galeri)
+        @php
+            // Pengamanan ekstrak path jika suatu saat galeri ikutan pakai trik "explode"
+            $galeriImgData = explode('|', $galeri->gambar);
+            $galeriPath = $galeriImgData[0];
+        @endphp
         <button type="button"
                 class="gallery-item w-full break-inside-avoid group relative rounded-[24px] overflow-hidden text-left focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/50"
-                data-src="{{ asset('storage/'.$galeri->gambar) }}"
+                data-src="{{ asset('storage/'.$galeriPath) }}"
                 data-title="{{ $galeri->judul }}">
-            <img src="{{ asset('storage/'.$galeri->gambar) }}" alt="{{ $galeri->judul }}" class="w-full object-cover transform group-hover:scale-105 transition duration-700">
+            <img src="{{ asset('storage/'.$galeriPath) }}" alt="{{ $galeri->judul }}" class="w-full object-cover transform group-hover:scale-105 transition duration-700">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
                 <h4 class="text-white font-bold text-lg">{{ $galeri->judul }}</h4>
             </div>
@@ -175,6 +186,7 @@
     </div>
 </section>
 
+<!-- Lightbox galeri -->
 <div id="lightbox" class="hidden fixed inset-0 z-[60] bg-slate-950/90 backdrop-blur-sm items-center justify-center p-6">
     <button id="lightbox-close" aria-label="Tutup" class="absolute top-6 right-6 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -185,6 +197,7 @@
     </figure>
 </div>
 
+<!-- 6. CERITA TERBARU SECTION -->
 <section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
     <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
         <div>
@@ -198,11 +211,19 @@
 
     <div class="grid md:grid-cols-3 gap-8">
         @forelse($beritaTerbaru ?? [] as $berita)
+        @php
+            // TRIK SAKTI: Pecah nama file gambar dan class posisi fokusnya
+            $imgData = explode('|', $berita->gambar);
+            $pathGambar = $imgData[0];
+            $posisiFokus = $imgData[1] ?? 'object-center'; // Default ke tengah jika data lama
+        @endphp
+        
         <article class="group bg-white rounded-[30px] overflow-hidden border border-slate-100 shadow-lg hover:-translate-y-3 hover:shadow-[0_25px_80px_rgba(16,185,129,0.18)] transition-all duration-500 flex flex-col">
             
-            @if($berita->gambar)
+            @if($pathGambar)
                 <div class="h-56 overflow-hidden">
-                    <img src="{{ asset('storage/'.$berita->gambar) }}" alt="{{ $berita->judul }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <!-- Menyisipkan class $posisiFokus yang dipilih user di admin -->
+                    <img src="{{ asset('storage/'.$pathGambar) }}" alt="{{ $berita->judul }}" class="w-full h-full object-cover {{ $posisiFokus }} group-hover:scale-110 transition duration-500">
                 </div>
             @else
                 <div class="h-56 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 flex items-center justify-center">
@@ -215,7 +236,7 @@
             <div class="p-8 flex flex-col flex-1">
                 <span class="text-xs font-bold uppercase tracking-widest text-emerald-600">{{ $berita->created_at->format('d M Y') }}</span>
                 <h3 class="mt-4 text-2xl font-bold text-slate-900 group-hover:text-emerald-600 transition">{{ $berita->judul }}</h3>
-                <p class="mt-4 text-slate-500 line-clamp-3 leading-relaxed">{{ $berita->konten }}</p>
+                <p class="mt-4 text-slate-500 line-clamp-3 leading-relaxed">{{ Str::limit(strip_tags($berita->konten), 120) }}</p>
                 <div class="mt-auto pt-6">
                     <a href="{{ route('berita.detail', $berita->slug) }}" class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-teal-700 transition">Mulai Membaca →</a>
                 </div>
@@ -229,6 +250,7 @@
     </div>
 </section>
 
+<!-- 7. PETA WILAYAH SECTION -->
 <section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
     <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
         <div>
@@ -259,6 +281,7 @@
     </div>
 </section>
 
+<!-- CALL TO ACTION -->
 <section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-12">
     <div class="rounded-[40px] bg-slate-900 overflow-hidden relative">
         <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20"></div>
