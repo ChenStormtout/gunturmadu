@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#047857">
 
     <title>@yield('title', 'Beranda') · Desa {{ $profil['nama_desa'] ?? 'Gunturmadu' }}</title>
-    <meta name="description" content="@yield('meta_description', 'Portal resmi Desa ' . ($profil['nama_desa'] ?? 'Gunturmadu') . ' — informasi, berita, statistik, dan profil desa.')">
+    <meta name="description" content="@yield('meta_description', 'Portal resmi Desa ' . ($profil['nama_desa'] ?? 'Gunturmadu') . ' — informasi, berita, statistik, potensi, dan profil desa.')">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="@yield('title', 'Desa ' . ($profil['nama_desa'] ?? 'Gunturmadu'))">
@@ -50,11 +50,15 @@
                 <div class="hidden md:flex items-center gap-8">
                     <a href="/" class="relative text-sm font-medium transition {{ request()->is('/') ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600' }}">Beranda</a>
                     <a href="/berita" class="relative text-sm font-medium transition {{ request()->is('berita*') ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600' }}">Berita</a>
+                    
+                    {{-- TAMBAHAN: Menu Potensi (Biar warga bisa gampang akses katalog produk/wisata) --}}
+                    <a href="/potensi" class="relative text-sm font-medium transition {{ request()->is('potensi*') ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600' }}">Potensi Desa</a>
+                    
                     <a href="/#tentang" class="text-sm font-medium text-slate-600 hover:text-emerald-600 transition">Profil</a>
                     <a href="/#galeri" class="text-sm font-medium text-slate-600 hover:text-emerald-600 transition">Galeri</a>
                     <a href="/#kontak" class="text-sm font-medium text-slate-600 hover:text-emerald-600 transition">Kontak</a>
                     
-                    {{-- TAMBAHAN: TOMBOL LAPOR --}}
+                    {{-- Tombol Lapor --}}
                     <a href="{{ route('laporan.create') }}" class="px-5 py-2.5 rounded-full bg-emerald-600 text-white text-sm font-bold hover:bg-emerald-700 transition shadow-lg shadow-emerald-600/20">Lapor Warga</a>
                 </div>
 
@@ -71,6 +75,10 @@
             <div class="px-6 py-5 flex flex-col gap-1">
                 <a href="/" class="px-3 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50">Beranda</a>
                 <a href="/berita" class="px-3 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50">Berita</a>
+                
+                {{-- TAMBAHAN MOBILE: Menu Potensi --}}
+                <a href="/potensi" class="px-3 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50">Potensi Desa</a>
+                
                 <a href="/#tentang" class="px-3 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50">Profil</a>
                 <a href="/#galeri" class="px-3 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50">Galeri</a>
                 <a href="/#kontak" class="px-3 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50">Kontak</a>
@@ -104,6 +112,7 @@
                     <ul class="space-y-3 text-slate-400 text-sm">
                         <li><a href="/" class="hover:text-emerald-400 transition">Beranda</a></li>
                         <li><a href="/berita" class="hover:text-emerald-400 transition">Berita</a></li>
+                        <li><a href="/potensi" class="hover:text-emerald-400 transition">Potensi Desa</a></li> {{-- TAMBAHAN FOOTER --}}
                         <li><a href="/#tentang" class="hover:text-emerald-400 transition">Profil Desa</a></li>
                         <li><a href="/#galeri" class="hover:text-emerald-400 transition">Galeri</a></li>
                     </ul>

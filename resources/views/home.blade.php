@@ -70,33 +70,82 @@
 </section>
 
 <!-- 2. STATISTIK & GRAFIK SECTION -->
-<section id="statistik" class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out relative z-20 max-w-6xl mx-auto px-6 -mt-16 mb-24">
+<!-- 2. STATISTIK & GRAFIK SECTION (VERSI DEMOGRAFI SINKRON MUTAKHIR) -->
+<section id="statistik" class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out relative z-20 max-w-7xl mx-auto px-6 -mt-16 mb-24">
     <div class="bg-white/90 backdrop-blur-xl rounded-[36px] border border-white shadow-[0_20px_80px_rgba(15,23,42,0.08)] p-8 md:p-12">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="grid grid-cols-2 gap-6">
-                <div class="col-span-2 text-center bg-emerald-50 rounded-3xl p-6 border border-emerald-100 group hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-5xl mb-2 group-hover:scale-110 transition-transform">👨‍👩‍👧‍👦</div>
-                    <h3 class="text-4xl font-black text-emerald-600">{{ $profil['total_penduduk'] ?? '0' }}</h3>
-                    <p class="mt-2 text-slate-500 font-semibold">Total Warga Desa</p>
+        
+        <div class="text-center mb-12">
+            <span class="text-emerald-600 font-semibold uppercase tracking-widest text-sm">Demografi Real-Time</span>
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-2">Peta Statistik Penduduk</h2>
+            <p class="text-slate-500 text-xs font-medium mt-1">Seluruh data rincian sinkron secara otomatis dengan data total warga.</p>
+        </div>
+
+        <!-- Baris Kartu Angka Utama -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="text-center bg-emerald-50 rounded-[28px] p-6 border border-emerald-100 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="text-5xl mb-2 group-hover:scale-110 transition-transform">👨‍👩‍👧‍👦</div>
+                <p class="text-slate-500 font-bold uppercase tracking-widest text-[10px]">Total Warga Desa</p>
+                <h3 class="text-4xl font-black text-emerald-600 mt-1 tabular-nums">{{ $profil['total_penduduk'] }}</h3>
+            </div>
+            <div class="text-center bg-sky-50 rounded-[28px] p-6 border border-sky-100 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">👨</div>
+                <p class="text-slate-500 font-bold uppercase tracking-widest text-[10px]">Laki-Laki</p>
+                <h3 class="text-3xl font-black text-sky-600 mt-1 tabular-nums">{{ $profil['penduduk_pria'] }}</h3>
+            </div>
+            <div class="text-center bg-pink-50 rounded-[28px] p-6 border border-pink-100 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">👩</div>
+                <p class="text-slate-500 font-bold uppercase tracking-widest text-[10px]">Perempuan</p>
+                <h3 class="text-3xl font-black text-pink-500 mt-1 tabular-nums">{{ $profil['penduduk_wanita'] }}</h3>
+            </div>
+        </div>
+
+        <!-- Baris Grafik Grid (3 Kolom Atas, 2 Kolom Bawah) -->
+        <div class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 1. Rasio Gender -->
+                <div class="bg-slate-50/50 rounded-[28px] p-6 border border-slate-100 shadow-sm flex flex-col justify-between min-h-[320px]">
+                    <h4 class="text-slate-700 font-bold text-center text-sm uppercase tracking-wide mb-4"> Rasio Gender</h4>
+                    <div class="relative w-full max-w-[180px] aspect-square mx-auto flex items-center">
+                        <canvas id="genderChart"></canvas>
+                    </div>
                 </div>
-                <div class="text-center bg-sky-50 rounded-3xl p-6 border border-sky-100 group hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">👨</div>
-                    <h3 class="text-3xl font-black text-sky-600">{{ $profil['penduduk_pria'] ?? '0' }}</h3>
-                    <p class="mt-1 text-slate-500 font-medium text-sm">Laki-Laki</p>
+
+                <!-- 2. Pemetaan Agama (6 Agama + Sisa) -->
+                <div class="bg-slate-50/50 rounded-[28px] p-6 border border-slate-100 shadow-sm flex flex-col justify-between min-h-[320px]">
+                    <h4 class="text-slate-700 font-bold text-center text-sm uppercase tracking-wide mb-4"> Komposisi Agama</h4>
+                    <div class="relative w-full max-w-[180px] aspect-square mx-auto flex items-center">
+                        <canvas id="agamaChart"></canvas>
+                    </div>
                 </div>
-                <div class="text-center bg-pink-50 rounded-3xl p-6 border border-pink-100 group hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">👩</div>
-                    <h3 class="text-3xl font-black text-pink-500">{{ $profil['penduduk_wanita'] ?? '0' }}</h3>
-                    <p class="mt-1 text-slate-500 font-medium text-sm">Perempuan</p>
+
+                <!-- 3. Tingkat Pendidikan -->
+                <div class="bg-slate-50/50 rounded-[28px] p-6 border border-slate-100 shadow-sm flex flex-col justify-between min-h-[320px]">
+                    <h4 class="text-slate-700 font-bold text-center text-sm uppercase tracking-wide mb-4"> Jenjang Pendidikan</h4>
+                    <div class="relative w-full max-w-[180px] aspect-square mx-auto flex items-center">
+                        <canvas id="pendidikanChart"></canvas>
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-col items-center justify-center bg-white rounded-3xl p-6 shadow-sm border border-slate-100 h-full min-h-[300px]">
-                <h4 class="text-slate-600 font-bold mb-4">Rasio Gender Warga</h4>
-                <div class="relative w-full max-w-[250px] aspect-square">
-                    <canvas id="genderChart"></canvas>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 4. Mata Pencaharian -->
+                <div class="bg-slate-50/50 rounded-[28px] p-6 border border-slate-100 shadow-sm flex flex-col justify-between min-h-[280px]">
+                    <h4 class="text-slate-700 font-bold text-sm uppercase tracking-wide mb-4 flex items-center gap-2"> Pekerjaan Utama</h4>
+                    <div class="relative w-full h-[200px] my-auto">
+                        <canvas id="pekerjaanChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 5. Rentang Usia -->
+                <div class="bg-slate-50/50 rounded-[28px] p-6 border border-slate-100 shadow-sm flex flex-col justify-between min-h-[280px]">
+                    <h4 class="text-slate-700 font-bold text-sm uppercase tracking-wide mb-4 flex items-center gap-2"> Kelompok Usia</h4>
+                    <div class="relative w-full h-[200px] my-auto">
+                        <canvas id="usiaChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 
@@ -196,6 +245,63 @@
         <figcaption id="lightbox-caption" class="text-center text-white/80 mt-4 text-sm"></figcaption>
     </figure>
 </div>
+
+<!-- ETALASE POTENSI DESA -->
+<section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
+    
+    <!-- HEADER & TOMBOL LIHAT SEMUA -->
+    <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+        <div>
+            <span class="text-amber-500 font-semibold uppercase tracking-widest text-sm">Keunggulan Kita</span>
+            <h2 class="text-4xl font-black text-slate-900 mt-2">Etalase Potensi Desa</h2>
+            <p class="text-slate-500 mt-3">Produk lokal unggulan, kerajinan, dan kekayaan alam yang patut dibanggakan.</p>
+        </div>
+        <a href="{{ route('potensi.index') }}" class="px-6 py-3 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-amber-300 hover:text-amber-600 transition-all font-semibold text-slate-700 whitespace-nowrap">
+            Lihat Semua Potensi →
+        </a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+        @forelse($potensis ?? [] as $potensi)
+        @php
+            $imgData = explode('|', $potensi->gambar);
+            $pathGambar = $imgData[0];
+            $posisiFokus = $imgData[1] ?? 'object-center';
+        @endphp
+        
+        <a href="{{ route('potensi.detail', $potensi->slug) }}" class="group bg-white rounded-[32px] overflow-hidden border border-slate-100 shadow-sm hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(245,158,11,0.15)] transition-all duration-500 flex flex-col block">
+            @if($pathGambar)
+                <div class="h-64 overflow-hidden relative">
+                    <img src="{{ asset('storage/'.$pathGambar) }}" alt="{{ $potensi->judul }}" class="w-full h-full object-cover {{ $posisiFokus }} group-hover:scale-110 transition duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+            @else
+                <div class="h-64 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+                    <span class="text-4xl">🌟</span>
+                </div>
+            @endif
+
+            <div class="p-8 flex flex-col flex-1 bg-white relative">
+                <!-- Ikon mengambang di pojok kanan -->
+                <div class="absolute -top-6 right-8 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg text-amber-500 border border-slate-50 group-hover:rotate-12 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                </div>
+                
+                <h3 class="text-2xl font-black text-slate-800 group-hover:text-amber-500 transition-colors leading-snug mb-3">{{ $potensi->judul }}</h3>
+                <p class="text-slate-500 line-clamp-2 leading-relaxed text-sm">{{ Str::limit(strip_tags($potensi->deskripsi), 90) }}</p>
+                <div class="mt-6 flex items-center text-amber-500 font-bold text-sm">
+                    Lihat Detail Keunggulan <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+            </div>
+        </a>
+        @empty
+        <div class="col-span-3 py-16 bg-slate-50 border border-dashed border-slate-200 rounded-[32px] text-center">
+            <span class="text-4xl mb-4 block">🌾</span>
+            <p class="text-slate-500 font-medium">Data potensi desa sedang dalam tahap pendataan.</p>
+        </div>
+        @endforelse
+    </div>
+</section>
 
 <!-- 6. CERITA TERBARU SECTION -->
 <section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
@@ -301,36 +407,144 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        // --- 1. Chart.js: rasio gender ---
-        const pria = parseInt("{{ $profil['penduduk_pria'] ?? 0 }}") || 0;
-        const wanita = parseInt("{{ $profil['penduduk_wanita'] ?? 0 }}") || 0;
+        // ==========================================
+        // KONFIGURASI GLOBAL CHART.JS
+        // ==========================================
+        Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+        Chart.defaults.font.weight = '600';
+        Chart.defaults.color = '#64748b'; 
+        Chart.defaults.scale.grid.color = '#f1f5f9'; 
 
-        const ctx = document.getElementById('genderChart').getContext('2d');
-        new Chart(ctx, {
+        // ==========================================
+        // TRIK STRING WRAP BIAR VS CODE NGGAK ERROR
+        // ==========================================
+        const dataGender = [
+            parseInt("{{ $profil['penduduk_pria'] ?? 0 }}"), 
+            parseInt("{{ $profil['penduduk_wanita'] ?? 0 }}")
+        ];
+        
+        const dataAgama = [
+            parseInt("{{ $profil['agama_islam'] ?? 0 }}"), 
+            parseInt("{{ $profil['agama_kristen'] ?? 0 }}"), 
+            parseInt("{{ $profil['agama_katolik'] ?? 0 }}"), 
+            parseInt("{{ $profil['agama_hindu'] ?? 0 }}"), 
+            parseInt("{{ $profil['agama_buddha'] ?? 0 }}"), 
+            parseInt("{{ $profil['agama_khonghucu'] ?? 0 }}"),
+            parseInt("{{ $profil['agama_lainnya'] ?? 0 }}")
+        ];
+
+        const dataPendidikan = [
+            parseInt("{{ $profil['pend_tidak_sekolah'] ?? 0 }}"), 
+            parseInt("{{ $profil['pend_sd'] ?? 0 }}"), 
+            parseInt("{{ $profil['pend_smp'] ?? 0 }}"), 
+            parseInt("{{ $profil['pend_sma'] ?? 0 }}"), 
+            parseInt("{{ $profil['pend_tinggi'] ?? 0 }}")
+        ];
+
+        const dataPekerjaan = [
+            parseInt("{{ $profil['pekerjaan_petani'] ?? 0 }}"), 
+            parseInt("{{ $profil['pekerjaan_pedagang'] ?? 0 }}"), 
+            parseInt("{{ $profil['pekerjaan_swasta'] ?? 0 }}"), 
+            parseInt("{{ $profil['pekerjaan_pns'] ?? 0 }}"), 
+            parseInt("{{ $profil['pekerjaan_lainnya'] ?? 0 }}")
+        ];
+
+        const dataUsia = [
+            parseInt("{{ $profil['usia_balita'] ?? 0 }}"), 
+            parseInt("{{ $profil['usia_anak'] ?? 0 }}"), 
+            parseInt("{{ $profil['usia_remaja'] ?? 0 }}"), 
+            parseInt("{{ $profil['usia_dewasa'] ?? 0 }}"), 
+            parseInt("{{ $profil['usia_lansia'] ?? 0 }}")
+        ];
+
+        // 1. CHART GENDER (Doughnut)
+        new Chart(document.getElementById('genderChart').getContext('2d'), {
             type: 'doughnut',
             data: {
                 labels: ['Laki-Laki', 'Perempuan'],
                 datasets: [{
-                    data: [pria, wanita],
-                    backgroundColor: ['#0284c7', '#ec4899'],
+                    data: dataGender,
+                    backgroundColor: ['#0ea5e9', '#ec4899'],
                     borderWidth: 0,
-                    hoverOffset: 10
+                    hoverOffset: 6
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '75%',
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { usePointStyle: true, padding: 20, font: { family: "'Plus Jakarta Sans', sans-serif", weight: '500' } }
-                    }
-                }
-            }
+            options: { responsive: true, maintainAspectRatio: false, cutout: '78%', plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, font: { size: 11 } } } } }
         });
 
-        // --- 2. Animasi scroll reveal ---
+        // 2. CHART AGAMA (Pie)
+        new Chart(document.getElementById('agamaChart').getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: ['Islam', 'Protestan', 'Katolik', 'Hindu', 'Buddha', 'Khonghucu', 'Lainnya'],
+                datasets: [{
+                    data: dataAgama,
+                    backgroundColor: ['#10b981', '#8b5cf6', '#3b82f6', '#f59e0b', '#ec4899', '#f43f5e', '#cbd5e1'],
+                    borderWidth: 0,
+                    hoverOffset: 6
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 6, font: { size: 10 } } } } }
+        });
+
+        // 3. CHART PENDIDIKAN (Doughnut)
+        new Chart(document.getElementById('pendidikanChart').getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Blm Sekolah', 'SD', 'SMP', 'SMA/SMK', 'Sarjana'],
+                datasets: [{
+                    data: dataPendidikan,
+                    backgroundColor: ['#64748b', '#f59e0b', '#3b82f6', '#10b981', '#ff0000'],
+                    borderWidth: 0,
+                    hoverOffset: 6
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 6, font: { size: 10 } } } } }
+        });
+
+        // 4. CHART PEKERJAAN (Horizontal Bar)
+        new Chart(document.getElementById('pekerjaanChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Petani/Kebun', 'Pedagang/UMKM', 'Karyawan Swasta', 'PNS/TNI/Polri', 'Lainnya'],
+                datasets: [{
+                    label: 'Jumlah Warga',
+                    data: dataPekerjaan,
+                    backgroundColor: '#14b8a6', 
+                    borderRadius: 6,
+                    maxBarThickness: 32 
+                }]
+            },
+            options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false } } } }
+        });
+
+        // 5. CHART KELOMPOK USIA (Vertical Bar)
+        new Chart(document.getElementById('usiaChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['0-4 Thn', '5-14 Thn', '15-24 Thn', '25-54 Thn', '55+ Thn'],
+                datasets: [{
+                    label: 'Jumlah Warga',
+                    data: dataUsia,
+                    backgroundColor: '#6366f1', 
+                    borderRadius: 6,
+                    maxBarThickness: 40 
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f8fafc' } } } }
+        });
+
+        // ==========================================
+        // FITUR LAINNYA (Scroll, Cuaca, Lightbox)
+        // (Kodingan bagian bawahnya biarkan persis seperti sebelumnya)
+        // ==========================================
+
+
+        // ==========================================
+        // FITUR LAINNYA (Scroll, Cuaca, Lightbox)
+        // ==========================================
+
+        // --- Animasi scroll reveal ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -343,7 +557,7 @@
 
         document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
 
-        // --- 3. Widget cuaca (Open-Meteo) ---
+        // --- Widget cuaca (Open-Meteo) ---
         const lat = "{{ $profil['latitude'] ?? '' }}" || "-4.9489";
         const lon = "{{ $profil['longitude'] ?? '' }}" || "105.3271";
 
@@ -385,7 +599,7 @@
         }
         fetchWeather();
 
-        // --- 4. Lightbox galeri ---
+        // --- Lightbox galeri ---
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
@@ -407,8 +621,12 @@
             document.body.classList.remove('overflow-hidden');
             lightboxImg.src = '';
         }
-        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        if (document.getElementById('lightbox-close')) {
+            document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        }
+        if (lightbox) {
+            lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        }
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
     });
 </script>
