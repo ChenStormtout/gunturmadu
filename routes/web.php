@@ -37,6 +37,7 @@ Route::get('/lapor', [LaporanWargaController::class, 'create'])->name('laporan.c
 Route::post('/lapor', [LaporanWargaController::class, 'store'])->name('laporan.store');
 Route::get('/lapor/verifikasi/{laporan}', [LaporanWargaController::class, 'verify'])->name('laporan.verify');
 
+
 /*
 |--------------------------------------------------------------------------
 | 2. AREA DASHBOARD ADMIN

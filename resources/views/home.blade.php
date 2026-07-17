@@ -356,33 +356,62 @@
     </div>
 </section>
 
-<!-- 7. PETA WILAYAH SECTION -->
-<section class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100 max-w-7xl mx-auto px-6 mb-24">
-    <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
-        <div>
-            <span class="text-emerald-600 font-semibold uppercase tracking-widest text-sm">Lokasi Kami</span>
-            <h2 class="text-4xl font-black text-slate-900 mt-2">Peta Wilayah Desa</h2>
-            <p class="text-slate-500 mt-3">Kunjungi kami dan nikmati keindahan alam {{ $profil['nama_desa'] ?? 'Gunturmadu' }} secara langsung.</p>
-        </div>
-    </div>
-
-    <div class="relative w-full h-[400px] md:h-[500px] rounded-[40px] overflow-hidden shadow-[0_20px_80px_rgba(15,23,42,0.08)] border border-slate-100 group">
-        <iframe
-            src="https://maps.google.com/maps?q={{ urlencode('Desa '.($profil['nama_desa'] ?? 'Gunturmadu').', '.($profil['kecamatan'] ?? '').', '.($profil['kabupaten'] ?? '')) }}&t=&z=14&ie=UTF8&iwloc=&output=embed"
-            class="absolute inset-0 w-full h-full border-0 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-
-        <div class="absolute bottom-6 left-6 right-6 md:right-auto md:w-96 bg-white/90 backdrop-blur-xl p-6 rounded-3xl shadow-xl border border-white/50">
-            <h4 class="font-bold text-slate-800 text-lg mb-2">📍 Balai Desa {{ $profil['nama_desa'] ?? 'Gunturmadu' }}</h4>
-            <p class="text-slate-500 text-sm leading-relaxed mb-4">
-                Kecamatan {{ $profil['kecamatan'] ?? '-' }}, Kabupaten {{ $profil['kabupaten'] ?? '-' }}, Provinsi {{ $profil['provinsi'] ?? '-' }}
+<!-- 7. PETA WILAYAH INTERAKTIF (WEB GIS LIVE) -->
+<section id="peta-wilayah" class="scroll-reveal opacity-0 translate-y-10 transition-all duration-1000 ease-out max-w-7xl mx-auto px-6 mb-24">
+    <div class="space-y-6">
+        
+        <!-- Judul Seksi Peta -->
+        <div class="text-center md:text-left">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 font-bold uppercase tracking-wider text-xs">
+                🗺️ Sistem Informasi Geografis
+            </span>
+            <h2 class="font-black text-3xl text-slate-800 tracking-tight leading-tight mt-3">
+                Peta Spasial & Digital Desa Gunturmadu
+            </h2>
+            <p class="text-xs font-medium text-slate-500 mt-2">
+                Gunakan kursor atau sentuhan layar untuk menggeser, memperbesar (zoom), dan mengeksplorasi layer infrastruktur desa secara real-time.
             </p>
-            <a href="https://maps.google.com/maps?q={{ urlencode('Desa '.($profil['nama_desa'] ?? 'Gunturmadu').', '.($profil['kecamatan'] ?? '').', '.($profil['kabupaten'] ?? '')) }}" target="_blank" class="block w-full text-center px-4 py-2 bg-emerald-50 text-emerald-700 font-semibold rounded-xl hover:bg-emerald-100 transition">
-                Buka di Google Maps
+        </div>
+
+                <!-- Top Bar Dekoratif dengan Tombol Direct Google Maps -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 mb-4 text-xs">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="font-bold text-slate-700">Live WebGIS Interaktif</span>
+                <span class="hidden md:inline font-medium text-slate-400">| Survei Lapangan & KKN v1.0</span>
+            </div>
+            
+            <!-- Tombol Sakti Google Maps Direct -->
+            <a href="https://www.google.com/maps/search/?api=1&query=Kantor+Desa+Gunturmadu" 
+            target="_blank" 
+            class="inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-md shadow-emerald-600/10 hover:-translate-y-0.5 transition-all duration-200">
+                🚗 Petunjuk Arah (Google Maps)
             </a>
+        </div>
+
+        <!-- Frame Container Peta Elegan (Mencegah Grafik Terjepit) -->
+        <div class="bg-white border border-slate-100 rounded-[32px] p-4 shadow-xl shadow-slate-100/70 overflow-hidden">
+            
+            <!-- Top Bar Dekoratif ala Dashboard Aplikasi Pro -->
+            <div class="flex items-center justify-between bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 mb-4 text-xs">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="font-bold text-slate-700">Live WebGIS Interaktif</span>
+                </div>
+                <span class="font-medium text-slate-400 uppercase tracking-widest text-[10px]">Survei Lapangan & KKN v1.0</span>
+            </div>
+
+            <!-- Wadah Inti Peta dengan Tinggi Stabil -->
+            <div class="relative w-full h-[580px] rounded-2xl overflow-hidden shadow-inner bg-slate-50 border border-slate-100">
+                <iframe 
+                    src="https://yulianaberlianti.github.io/webgis-gunturmadu/" 
+                    class="w-full h-full border-0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    allow="geolocation"> 
+                </iframe>
+            </div>
+            
         </div>
     </div>
 </section>
