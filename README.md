@@ -1,71 +1,69 @@
-# 🌿 SIPERDES GUNTURMADU
-> Platform Digitalisasi Desa & Sistem Pengaduan Warga Berbasis Validasi Email Terenkripsi
+# SIPERDES GUNTURMADU
 
-[![Laravel](https://img.shields.io/badge/Laravel-v11.x-FF2D20?style=flat-square&logo=laravel)](https://laravel.com)
-[![PHP](https://img.shields.io/badge/PHP-%E2%89%A58.2-777BB4?style=flat-square&logo=php)](https://php.net)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-v3.x-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com)
-[![Alpine.js](https://img.shields.io/badge/Alpine.js-v3.x-8BC0D0?style=flat-square&logo=alpine.js)](https://alpinejs.dev)
+Sistem Informasi Desa & Platform Pengaduan Masyarakat
+
+![Laravel](https://img.shields.io/badge/Laravel-v11.x-FF2D20?style=flat-square&logo=laravel)
+![PHP](https://img.shields.io/badge/PHP-%E2%89%A58.2-777BB4?style=flat-square&logo=php)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-v3.x-38B2AC?style=flat-square&logo=tailwind-css)
+![Alpine.js](https://img.shields.io/badge/Alpine.js-v3.x-8BC0D0?style=flat-square&logo=alpine.js)
 
 ---
 
-## 📐 Arsitektur Antarmuka & Layout Sistem
+## 1. Arsitektur Sistem
+
+### 1.1 Struktur Modul Aplikasi
 
 ```text
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                         PORTAL PUBLIK DESA GUNTURMADU                            │
-├──────────────────────────────────────────────────────────────────────────────────┤
-│ [Hero & Live Weather] -> [Statistik Demografi (Chart.js)] -> [WebGIS Interaktif] │
-│ [Etalase Potensi UMKM] -> [Galeri & Lightbox]          -> [Jurnal & Kabar Desa]  │
-└────────────────────────────────────────┬─────────────────────────────────────────┘
-                                         │
-                         Form Pengaduan (Tanpa Login)
-                                         │
-                                         ▼
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                         SISTEM VERIFIKASI DUA ARAH                               │
-├──────────────────────────────────────────────────────────────────────────────────┤
-│ Pelapor Input Data ──> Kirim Temporary Signed URL ──> Verifikasi Email (60 Min)  │
-└────────────────────────────────────────┬─────────────────────────────────────────┘
-                                         │
-                                   Status Valid
-                                         │
-                                         ▼
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                           PANEL CONTROL ADMIN DESA                               │
-├──────────────────────────────────────────────────────────────────────────────────┤
-│ [Dashboard Monitoring] ──> [Manajemen Laporan]  ──> [Modul Presisi Media]      │
-│ (Aparatur, Berita,     │ (Menunggu / Diproses / │ (Cropper.js 1:1, Auto-Compress │
-│  Galeri, Demografi)    │  Selesai / Ditolak)    │  & Focal Point Adjuster)       │
-└──────────────────────────────────────────────────────────────────────────────────┘
-🔄 Alur Kerja Pengaduan Warga (Passwordless Verification)
+PORTAL PUBLIK DESA GUNTURMADU
+├── Informasi Publik & Live Weather Widget
+├── Visualizer Demografi Interaktif (Chart.js)
+├── Spasial Pemetaan WebGIS (Leaflet Engine)
+├── Etalase Produk UMKM & Potensi Desa
+├── Galeri Foto & Lightbox Viewer
+└── Jurnal Berita Desa
+       │
+       ▼
+SISTEM VERIFIKASI PENGADUAN
+├── Form Laporan Warga (Tanpa Akun)
+├── Engine Temporary Signed URL
+└── Mailer Verifikasi Email (Timeout 60 Menit)
+       │
+       ▼
+PANEL KENDALI ADMIN
+├── Dashboard Monitoring & Analitik
+├── Manajemen Status Laporan Warga
+└── Studio Pemrosesan Media (Cropper.js & Intervention Image)
+1.2 Alur Verifikasi Pengaduan Warga
 Cuplikan kode
 graph TD
-    A[Warga Kirim Laporan] -->|Form Tanpa Login| B(Simpan Draf Status Unverified)
-    B --> C[Sistem Kirim Email]
-    C -->|Temporary Signed URL| D[Warga Buka Email & Klik Verifikasi]
-    D -->|Validasi Signature < 60 Min| E[Status Laporan Jadi Verified]
-    E --> F[Notifikasi Masuk ke Dashboard Admin]
-    F --> G{Admin Memproses}
-    G -->|Tanggapan & Update Status| H[Status: Diproses / Selesai]
-    H --> I[Warga Cek Status via Kode Tiket Unik]
-⚡ Fitur Utama
-Sistem Laporan Tanpa Akun: Warga melaporkan keluhan tanpa pendaftaran akun. Otentikasi keamanan menggunakan Signed Temporary URL via email dengan pembatasan waktu akses.
+    A[Penginputan Laporan Warga] -->|Form Tanpa Login| B(Simpan Status Draft Unverified)
+    B --> C[Generator Email Link]
+    C -->|Temporary Signed URL| D[Buka Link Verifikasi Email]
+    D -->|Validasi Signature < 60 Min| E[Update Status Verified]
+    E --> F[Masuk Dashboard Admin]
+    F --> G{Tindakan Admin}
+    G -->|Proses & Balas| H[Status: Diproses / Selesai]
+    H --> I[Tracking Status via Kode Tiket]
+2. Spesifikasi Fitur
+2.1 Modul Publik dan Verifikasi
+Auth Pengaduan (Temporary Signed URL): Otentikasi laporan warga tanpa pendaftaran akun.
 
-Tracking Tiket Unik: Pelapor memperoleh kode tiket unik (contoh: LPR-X8A2K9) untuk memantau perkembangan penanganan laporan secara transparan.
+Pelacakan Tiket (Unique Hash String): Kode unik tracking status pengaduan (Contoh: LPR-X8A2K9).
 
-Demografi & Visualizer Real-Time: Grafik kependudukan interaktif (Gender, Agama, Pendidikan, Pekerjaan, Usia) terhubung langsung ke basis data dengan skrip validasi otomatis pencegah manipulasi data.
+Weather Widget (Open-Meteo API): Pembaruan kondisi cuaca lokasi desa secara berkala.
 
-Studio Pemrosesan Media Presisi:
+WebGIS Spasial (Leaflet Engine): Pemetaan lokasi fasilitas umum dan rute navigasi.
 
-Cropper.js Integration: Pemotongan foto profil aparatur rasio 1:1 langsung di browser pengguna sebelum dikirim ke server.
+2.2 Modul Pemrosesan Media & Demografi
+Image Cropper (Cropper.js): Pemotongan foto profil aparatur desa rasio 1:1 di browser.
 
-Intervention Image Driver (GD): Kompresi otomatis gambar ke format .jpg (kualitas 70%, skala maksimum 800–1200px) untuk menghemat penggunaan kapasitas memori server.
+Image Compression (Intervention Image v3): Kompresi otomatis .jpg max 1200px dengan kualitas 70%.
 
-Focal Point Adjuster: Pengaturan fokus visual (top, center, bottom) agar tampilan gambar tetap presisi di berbagai ukuran layar ponsel.
+Focal Adjustment (Custom Object Position): Penyesuaian titik fokus gambar (top, center, bottom).
 
-Integrasi GIS & Widget Cuaca: Peta spasial fasilitas desa terintegrasi langsung dengan Google Maps Direct Routing serta pembaruan kondisi cuaca real-time via Open-Meteo API.
+Visualizer Data (Chart.js v4): Grafik demografi kependudukan terintegrasi guardrail script.
 
-🗄️ Skema Relasi Database
+3. Skema Relasi Database (ERD)
 Cuplikan kode
 erDiagram
     users ||--o{ laporans : "tindak_lanjut"
@@ -106,18 +104,18 @@ erDiagram
         enum status
         text tanggapan_admin
     }
-🚀 Panduan Instalasi Lokal
-1. Kloning & Dependensi
+4. Panduan Instalasi
+4.1 Kloning Repositori & Install Dependensi
 Bash
 git clone [https://github.com/username/siperdes-gunturmadu.git](https://github.com/username/siperdes-gunturmadu.git)
 cd siperdes-gunturmadu
 composer install
 npm install
-2. Konfigurasi Lingkungan (.env)
+4.2 Konfigurasi Environment
 Bash
 cp .env.example .env
 php artisan key:generate
-Sesuaikan parameter database dan SMTP email pada file .env:
+Konfigurasi .env:
 
 Cuplikan kode
 DB_CONNECTION=mysql
@@ -135,26 +133,26 @@ MAIL_PASSWORD=app-specific-password
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="no-reply@gunturmadu.desa.id"
 MAIL_FROM_NAME="Desa Gunturmadu"
-3. Migrasi, Seeder, & Storage Link
+4.3 Migrasi Database & Storage Symlink
 Bash
 php artisan migrate --seed
 php artisan storage:link
-4. Jalankan Server
+4.4 Menjalankan Server Lokal
 Bash
 # Terminal 1 - Backend Server
 php artisan serve
 
-# Terminal 2 - Vite Compiler
+# Terminal 2 - Frontend Asset Compiler
 npm run dev
-Akses aplikasi melalui browser di http://127.0.0.1:8000.
+5. Tech Stack Summary
+Backend Core: Laravel 11.x (PHP >= 8.2)
 
-🛠️ Stack Teknologi
-Backend Framework: Laravel 11.x (PHP >= 8.2)
+Frontend UI: Tailwind CSS v3, Alpine.js v3
 
-Frontend Engine: Tailwind CSS v3, Alpine.js v3, Chart.js v4
+Data Visualization: Chart.js v4
 
-Media Processing: Intervention Image v3 (GD Driver), Cropper.js
+Media Engine: Intervention Image v3 (GD Driver), Cropper.js
 
-Maps & Geolocation: WebGIS Leaflet Engine, Open-Meteo API
+Maps & Weather: Leaflet WebGIS Engine, Open-Meteo API
 
-Security & Auth: Laravel Breeze, Signed Routes, CSRF Protection Guard
+Security Layer: Laravel Breeze, Signed Temporary URLs, CSRF Protection
