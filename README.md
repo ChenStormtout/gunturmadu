@@ -33,8 +33,11 @@ PANEL KENDALI ADMIN
 ├── Dashboard Monitoring & Analitik
 ├── Manajemen Status Laporan Warga
 └── Studio Pemrosesan Media (Cropper.js & Intervention Image)
-1.2 Alur Verifikasi Pengaduan Warga
-Cuplikan kode
+```
+
+### 1.2 Alur Verifikasi Pengaduan Warga
+
+```mermaid
 graph TD
     A[Penginputan Laporan Warga] -->|Form Tanpa Login| B(Simpan Status Draft Unverified)
     B --> C[Generator Email Link]
@@ -44,27 +47,31 @@ graph TD
     F --> G{Tindakan Admin}
     G -->|Proses & Balas| H[Status: Diproses / Selesai]
     H --> I[Tracking Status via Kode Tiket]
-2. Spesifikasi Fitur
-2.1 Modul Publik dan Verifikasi
-Auth Pengaduan (Temporary Signed URL): Otentikasi laporan warga tanpa pendaftaran akun.
+```
 
-Pelacakan Tiket (Unique Hash String): Kode unik tracking status pengaduan (Contoh: LPR-X8A2K9).
+---
 
-Weather Widget (Open-Meteo API): Pembaruan kondisi cuaca lokasi desa secara berkala.
+## 2. Spesifikasi Fitur
 
-WebGIS Spasial (Leaflet Engine): Pemetaan lokasi fasilitas umum dan rute navigasi.
+### 2.1 Modul Publik dan Verifikasi
 
-2.2 Modul Pemrosesan Media & Demografi
-Image Cropper (Cropper.js): Pemotongan foto profil aparatur desa rasio 1:1 di browser.
+* **Auth Pengaduan (Temporary Signed URL):** Otentikasi laporan warga tanpa pendaftaran akun.
+* **Pelacakan Tiket (Unique Hash String):** Kode unik tracking status pengaduan (Contoh: LPR-X8A2K9).
+* **Weather Widget (Open-Meteo API):** Pembaruan kondisi cuaca lokasi desa secara berkala.
+* **WebGIS Spasial (Leaflet Engine):** Pemetaan lokasi fasilitas umum dan rute navigasi.
 
-Image Compression (Intervention Image v3): Kompresi otomatis .jpg max 1200px dengan kualitas 70%.
+### 2.2 Modul Pemrosesan Media & Demografi
 
-Focal Adjustment (Custom Object Position): Penyesuaian titik fokus gambar (top, center, bottom).
+* **Image Cropper (Cropper.js):** Pemotongan foto profil aparatur desa rasio 1:1 di browser.
+* **Image Compression (Intervention Image v3):** Kompresi otomatis .jpg max 1200px dengan kualitas 70%.
+* **Focal Adjustment (Custom Object Position):** Penyesuaian titik fokus gambar (top, center, bottom).
+* **Visualizer Data (Chart.js v4):** Grafik demografi kependudukan terintegrasi guardrail script.
 
-Visualizer Data (Chart.js v4): Grafik demografi kependudukan terintegrasi guardrail script.
+---
 
-3. Skema Relasi Database (ERD)
-Cuplikan kode
+## 3. Skema Relasi Database (ERD)
+
+```mermaid
 erDiagram
     users ||--o{ laporans : "tindak_lanjut"
     profil_desas {
@@ -104,20 +111,31 @@ erDiagram
         enum status
         text tanggapan_admin
     }
-4. Panduan Instalasi
-4.1 Kloning Repositori & Install Dependensi
-Bash
+```
+
+---
+
+## 4. Panduan Instalasi
+
+### 4.1 Kloning Repositori & Install Dependensi
+
+```bash
 git clone [https://github.com/username/siperdes-gunturmadu.git](https://github.com/username/siperdes-gunturmadu.git)
 cd siperdes-gunturmadu
 composer install
 npm install
-4.2 Konfigurasi Environment
-Bash
+```
+
+### 4.2 Konfigurasi Environment
+
+```bash
 cp .env.example .env
 php artisan key:generate
-Konfigurasi .env:
+```
 
-Cuplikan kode
+Konfigurasi `.env`:
+
+```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -133,26 +151,32 @@ MAIL_PASSWORD=app-specific-password
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="no-reply@gunturmadu.desa.id"
 MAIL_FROM_NAME="Desa Gunturmadu"
-4.3 Migrasi Database & Storage Symlink
-Bash
+```
+
+### 4.3 Migrasi Database & Storage Symlink
+
+```bash
 php artisan migrate --seed
 php artisan storage:link
-4.4 Menjalankan Server Lokal
-Bash
+```
+
+### 4.4 Menjalankan Server Lokal
+
+```bash
 # Terminal 1 - Backend Server
 php artisan serve
 
 # Terminal 2 - Frontend Asset Compiler
 npm run dev
-5. Tech Stack Summary
-Backend Core: Laravel 11.x (PHP >= 8.2)
+```
 
-Frontend UI: Tailwind CSS v3, Alpine.js v3
+---
 
-Data Visualization: Chart.js v4
+## 5. Tech Stack Summary
 
-Media Engine: Intervention Image v3 (GD Driver), Cropper.js
-
-Maps & Weather: Leaflet WebGIS Engine, Open-Meteo API
-
-Security Layer: Laravel Breeze, Signed Temporary URLs, CSRF Protection
+* **Backend Core:** Laravel 11.x (PHP >= 8.2)
+* **Frontend UI:** Tailwind CSS v3, Alpine.js v3
+* **Data Visualization:** Chart.js v4
+* **Media Engine:** Intervention Image v3 (GD Driver), Cropper.js
+* **Maps & Weather:** Leaflet WebGIS Engine, Open-Meteo API
+* **Security Layer:** Laravel Breeze, Signed Temporary URLs, CSRF Protection
