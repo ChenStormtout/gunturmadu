@@ -1,59 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+  <br />
 
-## About Laravel
+  <!-- Logo / Badge Header -->
+  <img src="https://raw.githubusercontent.com/PKM-Gunturmadu/assets/main/logo-gunturmadu.png" alt="Desa Gunturmadu Logo" width="120" style="border-radius: 24px;" onerror="this.src='https://ui-avatars.com/api/?name=Gunturmadu&background=059669&color=fff&size=120&bold=true'">
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+  # 🌿 SIPERDES GUNTURMADU
+  ### *Next-Gen Village Digital Ecosystem & Public Citizen Reporting System*
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  [![Laravel Version](https://img.shields.io/badge/Laravel-v11.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+  [![PHP Version](https://img.shields.io/badge/PHP-%E2%89%A5%208.2-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v3.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+  [![Alpine.js](https://img.shields.io/badge/Alpine.js-v3.x-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=black)](https://alpinejs.dev)
+  [![License](https://img.shields.io/badge/License-MIT-emerald?style=for-the-badge)](LICENSE)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  <p align="center">
+    <b>Portal Sistem Informasi Publik, Monitoring Demografi Real-Time, WebGIS Spasial Interaktif, dan Sistem Pengaduan Warga Berbasis Signed Email Link.</b>
+    <br />
+    <a href="#-demografi--fitur-utama"><strong>Jelajahi Fitur »</strong></a>
+    ·
+    <a href="#-panduan-instalasi"><strong>Instalasi Lokal »</strong></a>
+    ·
+    <a href="#-arsitektur-database"><strong>Skema Database »</strong></a>
+  </p>
 
-## Learning Laravel
+</div>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+> [!NOTE]
+> **SIPERDES Gunturmadu** adalah platform pengelolaan pemerintahan desa terpadu yang memadukan landing page publik berperforma tinggi dengan *Panel Kendali Sistem Admin*. Dirancang khusus untuk efisiensi server hosting (kompresi memori dinamis) serta mendukung transparansi data publik tanpa mengorbankan kenyamanan pengguna (*User Experience*).
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📸 Overview Interface
 
-### Premium Partners
+| **Portal Publik & Hero Section** | **Peta Demografi Real-Time** |
+| :---: | :---: |
+| <img src="https://user-images.githubusercontent.com/placeholder/hero-preview.png" alt="Hero Section" width="100%" onerror="this.src='https://via.placeholder.com/600x350/0f172a/10b981?text=Public+Portal+Hero+UI'"> | <img src="https://user-images.githubusercontent.com/placeholder/demografi-preview.png" alt="Chart Demografi" width="100%" onerror="this.src='https://via.placeholder.com/600x350/f8fafc/0284c7?text=Chart.js+Demographic+UI'"> |
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+| **WebGIS Spasial Interaktif** | **Control Panel Admin (Dark Glassmorphism)** |
+| :---: | :---: |
+| <img src="https://user-images.githubusercontent.com/placeholder/gis-preview.png" alt="WebGIS Map" width="100%" onerror="this.src='https://via.placeholder.com/600x350/059669/ffffff?text=Interactive+WebGIS+Map'"> | <img src="https://user-images.githubusercontent.com/placeholder/admin-preview.png" alt="Admin Panel" width="100%" onerror="this.src='https://via.placeholder.com/600x350/0f172a/38bdf8?text=Admin+Dashboard+Panel'"> |
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🔥 Fitur Unggulan
 
-## Code of Conduct
+### 🏛️ Portal Informasi Publik (Frontend)
+- **🌦️ Live Weather Integration**: Widget cuaca otomatis berbasis API [Open-Meteo](https://open-meteo.com) menyesuaikan koordinat geografis Desa.
+- **📊 Dynamic Demographic Visualizer**: Visualisasi statistik penduduk interaktif (Doughnut, Pie, & Horizontal/Vertical Bar Charts) menggunakan **Chart.js** yang terhubung langsung dengan basis data desa.
+- **🗺️ Embedded WebGIS Live**: Peta geospasial interaktif fasilitas desa yang terintegrasi dengan Google Maps Direct Routing.
+- **🖼️ Masonry Photo Gallery & Lightbox**: Galeri foto berkategori *Full-viewport Lightbox Pop-up* dengan keyboard gesture controls (`Escape` to exit).
+- **💎 Etalase Potensi & UMKM**: Promosi produk unggulan lokal, komoditas pertanian, dan destinasi wisata desa dengan custom focal alignment.
+- **📰 Jurnal & Kabar Desa**: Portal artikel & berita ramah SEO (*Search Engine Friendly Slug*) dilengkapi fitur *Social Media Direct Share* (WhatsApp & Facebook).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 📬 Sistem Pengaduan Warga (*Lapor Warga*)
+- **🔒 Passwordless Email Verification**: Warga dapat membuat laporan tanpa perlu *Sign Up/Login*. Validasi dilakukan melalui *Temporary Signed URLs* yang dikirimkan ke email pelapor (Masa berlaku link: 60 menit).
+- **🎫 Unique Ticket Tracker**: Sistem auto-generate kode tiket unik (Contoh: `LPR-ABCDEF`) untuk memantau status tindak lanjut admin secara transparan.
+- **🔄 Status Workflow**: Tahapan transparan (`menunggu` ➔ `diproses` ➔ `selesai` / `ditolak`) beserta balasan resmi dari pihak perangkat desa.
 
-## Security Vulnerabilities
+### ⚙️ Panel Kendali Admin (Backend)
+- **✂️ Cropper.js Profile Image Studio**: Fitur potong foto profil aparatur desa dengan rasio 1:1 (*WhatsApp-style crop*) langsung di sisi klien sebelum dikirim ke server.
+- **🗜️ Intervention Image Compression Engine**: Mengubah dan mengompres ukuran gambar secara otomatis ke format `.jpg` (skala max 800px-1200px / Kualitas 70%) untuk menghemat kapasitas storage server.
+- **🎯 Custom Focal Point Image Adjuster**: Opsi penyesuaian posisi gambar (`object-top`, `object-center`, `object-bottom`) untuk memastikan bagian terpenting foto tidak terpotong pada layar seluler.
+- **🧮 Automatic Demographic Validation**: Kalkulasi total penduduk otomatis (Pria + Wanita) dengan sistem *real-time guardrail script* untuk mencegah jumlah data rincian melebihi total populasi.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🛠️ Arsitektur & Teknologi
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Sektor | Teknologi yang Digunakan |
+| :--- | :--- |
+| **Core Framework** | [Laravel 11.x](https://laravel.com/) (PHP 8.2+) |
+| **Frontend UI** | [Tailwind CSS v3](https://tailwindcss.com/), [Alpine.js](https://alpinejs.dev/), Blade Components |
+| **Datavis & Charts** | [Chart.js v4](https://www.chartjs.org/) |
+| **Spatial / GIS** | Embedded WebGIS (Leaflet.js Engine) + Open-Meteo Weather API |
+| **Media Processing**| [Cropper.js](https://fengyuanchen.github.io/cropperjs/) & [Intervention Image v3 (GD Driver)](https://image.intervention.io/) |
+| **Authentication** | Laravel Breeze (Sanctum / Session-based) |
+| **Database** | MySQL / MariaDB / SQLite Support |
+
+---
+
+## 📂 Struktur Direktori Proyek
+
+```plaintext
+siperdes-gunturmadu/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── Admin/                # Controller CRUD Panel Admin (Aparatur, Berita, Galeri, dll)
+│   │   ├── Auth/                 # Authentication Controllers (Laravel Breeze)
+│   │   ├── HomeController.php    # Public Landing Page & Visualizer Aggregator
+│   │   └── LaporanWargaController.php # Signed-URL Email Reporting Handler
+│   ├── Mail/                     # Mailable Classes (VerifikasiLaporanMail)
+│   └── Models/                   # Eloquent Models (Aparatur, Berita, Laporan, Potensi, ProfilDesa, Galeri)
+├── database/
+│   ├── migrations/               # Schema Migrations
+│   └── seeders/                  # Database Seeders (Default Demographic & Profile Data)
+├── resources/
+│   ├── css/                      # Tailwind CSS Entry Points
+│   ├── js/                       # Alpine.js & Axios Setup
+│   └── views/                    # Blade Templates (Admin Dashboards & Frontend Layouts)
+└── routes/
+    ├── web.php                   # Public, Verification, & Admin Protected Routes
+    └── auth.php                  # Authentication Routes
