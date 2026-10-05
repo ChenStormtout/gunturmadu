@@ -120,7 +120,7 @@ erDiagram
 ### 4.1 Kloning Repositori & Install Dependensi
 
 ```bash
-git clone [https://github.com/username/siperdes-gunturmadu.git](https://github.com/username/siperdes-gunturmadu.git)
+git clone [https://github.com/ChenStormtout/gunturmadu.git](https://github.com/ChenStormtout/gunturmadu.git)
 cd siperdes-gunturmadu
 composer install
 npm install
